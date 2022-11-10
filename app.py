@@ -1,4 +1,5 @@
 from flask import Flask, request
+from random import randint
 
 app = Flask(__name__)
 
@@ -29,10 +30,10 @@ def update_player():
     if player_idx != -1:
         players.remove(players[player_idx])
         if players[player_idx]['alive'] == False:
-            return (False, 0)
+            return "0 0"
 
     player['name'] = player_name
-    player['coords'] = (player_x, player_y)
+    player['coords'] = (player_x, player_y) if (player_idx != -1) else (randint(-1500, 1500), randint(-1500, 1500))
     player['radius'] = player_r
     player['alive'] = True
 
@@ -43,11 +44,11 @@ def update_player():
                 players[enemy_idx]['alive'] = False
                 player['radius'] += enemy['radius']/2
             elif enemy['radius'] > player['radius'] :
-               return (False, 0)
+               return "0 0"
 
     players.append(player)
 
-    return str([True, player['radius']])
+    return f"1 {player['radius']}"
 
 @app.route("/get")
 def get_players():
