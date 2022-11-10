@@ -19,9 +19,9 @@ def hello_world():
 @app.route("/player")
 def update_player():
     player_name = request.args.get("name")
-    player_x = request.args.get("x")
-    player_y = request.args.get("y")
-    player_r = request.args.get("r")
+    player_x = int(request.args.get("x"))
+    player_y = int(request.args.get("y"))
+    player_r = int(request.args.get("r"))
     player = {}
 
     player_idx = next((i for i in range(len(players)) if players[i]['name'] == player_name), -1)
