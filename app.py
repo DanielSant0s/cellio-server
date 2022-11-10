@@ -30,7 +30,7 @@ def update_player():
     if player_idx != -1:
         players.remove(players[player_idx])
         if players[player_idx]['alive'] == False:
-            return "0 0"
+            return "0 0 0 0"
 
     player['name'] = player_name
     player['coords'] = (player_x, player_y) if (player_idx != -1) else (randint(-1500, 1500), randint(-1500, 1500))
@@ -44,11 +44,11 @@ def update_player():
                 players[enemy_idx]['alive'] = False
                 player['radius'] += enemy['radius']/2
             elif enemy['radius'] > player['radius'] :
-               return "0 0"
+               return "0 0 0 0"
 
     players.append(player)
 
-    return f"1 {player['radius']}"
+    return f"1 {player['coords'][0]} {player['coords'][1]} {player['radius']}"
 
 @app.route("/get")
 def get_players():
