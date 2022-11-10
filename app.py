@@ -52,7 +52,10 @@ def update_player():
 
 @app.route("/get")
 def get_players():
-    return str(players)
+    players_str = ""
+    for player in players:
+        players_str += f"{player['name']} {player['coords'][0]} {player['coords'][1]} {player['radius']} "
+    return str(players_str)
 
 if __name__ == '__main__':
     app.run()
