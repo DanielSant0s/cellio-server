@@ -33,7 +33,7 @@ def update_player():
 
     player['name'] = player_name
     player['coords'] = (player_x, player_y)
-    player['r'] = player_r
+    player['radius'] = player_r
     player['alive'] = True
 
     for enemy in players:
